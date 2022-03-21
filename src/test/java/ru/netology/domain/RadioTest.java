@@ -6,23 +6,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RadioTest {
 
-    Radio radioStation = new Radio();
-
-    @Test
-    public void radioTestSetNumber() {
-        radioStation.setNumber(7);
-
-        int expected = 7;
-        int numberActual = radioStation.getNumber();
-
-        assertEquals(expected, numberActual);
-    }
+    Radio radioStation = new Radio(13);
 
     @Test
     public void radioTestSetNumberOutsideMore() {
-        radioStation.setNumber(15);
+        radioStation.setNumber(radioStation.getQuantityNumber() + 1);
 
-        int expected = 5;
+        int expected = 0;
         int numberActual = radioStation.getNumber();
 
         assertEquals(expected, numberActual);
@@ -32,7 +22,7 @@ public class RadioTest {
     public void radioTestSetNumberOutsideLess() {
         radioStation.setNumber(-1);
 
-        int expected = 5;
+        int expected = 0;
         int numberActual = radioStation.getNumber();
 
         assertEquals(expected, numberActual);
@@ -41,10 +31,10 @@ public class RadioTest {
 
     @Test
     public void radioTestNextNumber() {
-        radioStation.setNumber(5);
+        radioStation.setNumber(radioStation.getQuantityNumber() / 2);
         radioStation.setNumberNext();
 
-        int expected = 6;
+        int expected = radioStation.getQuantityNumber() / 2 + 1;
         int numberActual = radioStation.getNumber();
 
         assertEquals(expected, numberActual);
@@ -52,7 +42,7 @@ public class RadioTest {
 
     @Test
     public void radioTestNextNumberBorder() {
-        radioStation.setNumber(9);
+        radioStation.setNumber(radioStation.getQuantityNumber() - 1);
         radioStation.setNumberNext();
 
         int expected = 0;
@@ -63,10 +53,10 @@ public class RadioTest {
 
     @Test
     public void radioTestPrevNumber() {
-        radioStation.setNumber(5);
+        radioStation.setNumber(radioStation.getQuantityNumber() / 2);
         radioStation.setNumberPrev();
 
-        int expected = 4;
+        int expected = radioStation.getQuantityNumber() / 2 - 1;
         int numberActual = radioStation.getNumber();
 
         assertEquals(expected, numberActual);
@@ -77,7 +67,7 @@ public class RadioTest {
         radioStation.setNumber(0);
         radioStation.setNumberPrev();
 
-        int expected = 9;
+        int expected = radioStation.getQuantityNumber() - 1;
         int numberActual = radioStation.getNumber();
 
         assertEquals(expected, numberActual);
@@ -96,9 +86,9 @@ public class RadioTest {
 
     @Test
     public void radioTestSetVolumeOutsideMore() {
-        radioStation.setVolume(11);
+        radioStation.setVolume(110);
 
-        int expected = 0;
+        int expected = 50;
         int volumeActual = radioStation.getVolume();
 
         assertEquals(expected, volumeActual);
@@ -108,7 +98,7 @@ public class RadioTest {
     public void radioTestSetVolumeOutsideLess() {
         radioStation.setVolume(-1);
 
-        int expected = 0;
+        int expected = 50;
         int volumeActual = radioStation.getVolume();
 
         assertEquals(expected, volumeActual);
@@ -128,10 +118,10 @@ public class RadioTest {
 
     @Test
     public void radioTestVolumeIncreaseBorder() {
-        radioStation.setVolume(10);
+        radioStation.setVolume(100);
         radioStation.setVolumeIncrease();
 
-        int expected = 10;
+        int expected = 100;
         int volumeActual = radioStation.getVolume();
 
         assertEquals(expected, volumeActual);

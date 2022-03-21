@@ -1,23 +1,39 @@
 package ru.netology.domain;
 
 public class Radio {
-    private int number;
-    private int volume;
+    private int number = 0;
+    private int volume = 50;
+    private int quantity = 10;
+
+    public Radio(){ }
+
+    public Radio(int quantity){
+        this.quantity = quantity;
+    }
+
+    public int getQuantityNumber() {
+        return quantity;
+    }
+
+ /*   public void setQuantityNumber(int quantity) {
+        this.quantity = quantity;
+    }
+*/
 
     public int getNumber() {
         return number;
     }
 
     public void setNumber(int newNumber) {
-        if (newNumber >= 0 && newNumber <= 9) {
+        if (newNumber >= 0 && newNumber <= this.quantity - 1) {
             number = newNumber;
         } else {
-            number = 5;
+            number = 0;
         }
     }
 
     public void setNumberNext() {
-        if (number == 9) {
+        if (number == this.quantity - 1) {
             number = 0;
         } else {
             number += 1;
@@ -26,7 +42,7 @@ public class Radio {
 
     public void setNumberPrev() {
         if (number == 0) {
-            number = 9;
+            number = this.quantity - 1;
         } else {
             number -= 1;
         }
@@ -38,16 +54,16 @@ public class Radio {
     }
 
     public void setVolume(int newVolume) {
-        if (newVolume >= 0 && newVolume <= 10) {
+        if (newVolume >= 0 && newVolume <= 100) {
             volume = newVolume;
-        } else {
-            volume = 0;
-        }
+        } /*else {
+            volume = 50;
+        }*/
 
     }
 
     public void setVolumeIncrease() {
-        if (volume == 10) {
+        if (volume == 100) {
             return;
         } else {
             volume += 1;
