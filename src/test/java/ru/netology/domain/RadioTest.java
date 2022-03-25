@@ -8,21 +8,22 @@ public class RadioTest {
 
     Radio radioStation = new Radio(13);
 
-    @Test
+    @Test // выходит за границы
     public void radioTestSetNumberOutsideMore() {
-        radioStation.setNumber(radioStation.getQuantityNumber() + 1);
+        radioStation.setNumber(radioStation.getQuantity() + 1);
 
-        int expected = 0;
+        int expected = 14;
+
         int numberActual = radioStation.getNumber();
 
         assertEquals(expected, numberActual);
     }
 
-    @Test
+    @Test // выходит за границы
     public void radioTestSetNumberOutsideLess() {
         radioStation.setNumber(-1);
 
-        int expected = 0;
+        int expected = -1;
         int numberActual = radioStation.getNumber();
 
         assertEquals(expected, numberActual);
@@ -31,10 +32,10 @@ public class RadioTest {
 
     @Test
     public void radioTestNextNumber() {
-        radioStation.setNumber(radioStation.getQuantityNumber() / 2);
+        radioStation.setNumber(radioStation.getQuantity() / 2);
         radioStation.setNumberNext();
 
-        int expected = radioStation.getQuantityNumber() / 2 + 1;
+        int expected = radioStation.getQuantity() / 2 + 1;
         int numberActual = radioStation.getNumber();
 
         assertEquals(expected, numberActual);
@@ -42,7 +43,7 @@ public class RadioTest {
 
     @Test
     public void radioTestNextNumberBorder() {
-        radioStation.setNumber(radioStation.getQuantityNumber() - 1);
+        radioStation.setNumber(radioStation.getQuantity() - 1);
         radioStation.setNumberNext();
 
         int expected = 0;
@@ -53,10 +54,10 @@ public class RadioTest {
 
     @Test
     public void radioTestPrevNumber() {
-        radioStation.setNumber(radioStation.getQuantityNumber() / 2);
+        radioStation.setNumber(radioStation.getQuantity() / 2);
         radioStation.setNumberPrev();
 
-        int expected = radioStation.getQuantityNumber() / 2 - 1;
+        int expected = radioStation.getQuantity() / 2 - 1;
         int numberActual = radioStation.getNumber();
 
         assertEquals(expected, numberActual);
@@ -67,7 +68,7 @@ public class RadioTest {
         radioStation.setNumber(0);
         radioStation.setNumberPrev();
 
-        int expected = radioStation.getQuantityNumber() - 1;
+        int expected = radioStation.getQuantity() - 1;
         int numberActual = radioStation.getNumber();
 
         assertEquals(expected, numberActual);
@@ -84,21 +85,21 @@ public class RadioTest {
         assertEquals(expected, volumeActual);
     }
 
-    @Test
+    @Test // выходит за границы
     public void radioTestSetVolumeOutsideMore() {
         radioStation.setVolume(110);
 
-        int expected = 50;
+        int expected = 110;
         int volumeActual = radioStation.getVolume();
 
         assertEquals(expected, volumeActual);
     }
 
-    @Test
+    @Test // выходит за границы
     public void radioTestSetVolumeOutsideLess() {
         radioStation.setVolume(-1);
 
-        int expected = 50;
+        int expected = -1;
         int volumeActual = radioStation.getVolume();
 
         assertEquals(expected, volumeActual);
